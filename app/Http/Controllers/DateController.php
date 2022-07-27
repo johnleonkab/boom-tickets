@@ -62,4 +62,25 @@ class DateController extends Controller
             }
         }
     }
+
+    public static function PastTime($time){
+        $timezone = 'Europe/Madrid';
+        $timeParse = Carbon::parse($time)->timezone($timezone);
+        $now = Carbon::parse()->timezone($timezone);
+
+        if($timeParse->diffInMinutes($now) < 60){
+            return $timeParse->diffInMinutes($now)." m";
+        }
+
+        if($timeParse->diffInHours($now) < 24){
+            return $timeParse->diffInHours($now)." h";
+        }
+
+        if($timeParse->diffInDays($now) < 30){
+            return $timeParse->diffInDays($now)." d";
+        }
+
+        return Carbon::parse($time)->timezone($timezone)->format('d/m/Y');
+        
+    }
 }

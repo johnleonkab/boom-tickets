@@ -15,20 +15,12 @@
                         <div class="text-2xl md:text-xl 2xl:text-2xl font-semibold uppercase text-center">{{$event->name}}</div>
                         <div class="text-xl font-semibold uppercase text-center">{{ \Carbon\Carbon::parse($event->start_datetime)->translatedFormat('d \d\e F') }}</div>
                         <div class="text- font-semibold uppercase text-center">{{$event->venue->name}}</div>
-                        <a href="http://google.es" class="follow-button">
-                            <span class="mx-auto flex align-middle">
-                                <span class="material-symbols-outlined">
-                                    add_circle
-                                    </span> &nbsp;
-                                Seguir evento
-                            </span>
-                        </a>
                         <a href="{{url('event/'.$event->slug)}}" class="mx-auto buy-button">
                             <span class="mx-auto flex align-middle">
                                 <span class="material-symbols-outlined">
                                     confirmation_number    
                                 </span> &nbsp;
-                                Comprar entradas
+                                Ver más
                             </span>
                         </a>
                     </div>

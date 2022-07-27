@@ -1,4 +1,4 @@
-<button id="asdf" onclick="follow('{{$target_type}}', '{{$target_slug}}', this)" class="follow-button mx-auto w-full text-center">
+<button id="asdf" onclick="follow('{{$target_type}}', '{{$target_slug}}', this)" class="rounded follow-button mx-auto w-full text-center">
     <span class="mx-auto align-middle flex">
         <div role="status" class="mx-auto text-center hidden">
             <svg class="inline mr-2 w-5 h-5 animate-spin text-gray-600 fill-lime-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

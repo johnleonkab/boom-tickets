@@ -22,10 +22,9 @@ filter: blur(15px);
 
         <div class="md:flex p-5">
             <h1 id="event-name" class="font-light text-4xl">{{$event->name}}</h1>
-                <button class="follow-button rounded md:ml-auto">
-                    <span class="material-symbols-outlined">add_circle</span>
-                    Seguir evento
-                </button>
+            <div class="ml-auto">
+                <livewire:dynamic-follow-button containerId="follow-button-{{$event->slug}}" targetType="event" :targetId="$event->id" :targetSlug="$event->slug">
+            </div>
         <hr>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3">

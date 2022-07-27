@@ -19,6 +19,7 @@ module.exports = {
                 marker: ['Permanent Marker', ...defaultTheme.fontFamily.sans],
                 poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
                 rubik: ['Rubik', ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
         },
     },

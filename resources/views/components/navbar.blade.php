@@ -62,7 +62,7 @@
           <a href="{{asset('/venues')}}" class="{{ (request()->is('venue*')) ? 'md:text-white text-white' : 'text-gray-400' }} transition block py-2 pr-4 pl-3 border-b  md:border-0  md:p-0  md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">Clubs</a>
         </li>
         <li>
-          <a href="{{asset('/feed')}}"   class="{{ (request()->is('feed/*')) ? 'md:text-white text-white' : 'text-gray-400' }} transition block py-2 pr-4 pl-3 border-b  md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">Feed</a>
+          <a href="{{asset('/feed')}}"   class="{{ (request()->is('feed*')) ? 'md:text-white text-white' : 'text-gray-400' }} transition block py-2 pr-4 pl-3 border-b  md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">Feed</a>
         </li>
         <li>
           <a href="{{asset('/settings')}}" class="transition block py-2 pr-4 pl-3 border-b  md:border-0  md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700">Ajustes</a>

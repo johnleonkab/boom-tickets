@@ -11,6 +11,7 @@ use App\Http\Controllers\User\EventsController;
 use App\Http\Controllers\User\VenueController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\MasterAdminController;
+use App\Http\Controllers\NotificationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,6 +84,8 @@ Route::middleware([
 
 Route::post('follow', [FollowerController::class, 'Follow']);
 Route::post('unfollow', [FollowerController::class, 'UnFollow']);
+Route::post('notifications/show', [NotificationsController::class, 'ShowNotifications']);
+Route::post('feed/search', [NotificationsController::class, 'SearchNotifications']);
 
 
 Route::get('auth/google', [LoginController::class, 'redirect']);

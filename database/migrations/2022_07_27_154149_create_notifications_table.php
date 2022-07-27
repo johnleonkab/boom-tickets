@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('target_id');
+            $table->string('origin_type')->nullable();
+            $table->foreignId('origin_id')->nullable();
+            $table->string('type');
+            $table->text('title');
+            $table->text('image')->nullable();
+            $table->text('content')->nullable();
+            $table->boolean('seen');
             $table->timestamps();
         });
     }
