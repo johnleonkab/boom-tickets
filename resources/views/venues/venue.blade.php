@@ -10,9 +10,12 @@
             <img src="{{$venue->logo_url}}" class="-translate-y-1/2 border-2 w-1/2 block md:hidden border-white mx-auto  md:ml-10" alt="">
         </div>
         <div class="flex">
-            <div class="hidden md:block md:w-1/4">
-                <img src="{{$venue->logo_url}}" class="-translate-y-1/2 border-2 border-white mx-auto  md:ml-10" alt="">
+            <div class="hidden md:block md:w-1/4 text-center md:ml-10">
+                <img src="{{$venue->logo_url}}" class="-translate-y-1/2 border-2 border-white mx-auto" alt="">
+                <span class="font-medium">{{App\Http\Controllers\HumanFormatter::Number($venue->followers->count())}} seguidores</span>
+                <livewire:dynamic-follow-button containerId="follow-button-{{$venue->slug}}" targetType="venue" :targetId="$venue->id" :targetSlug="$venue->slug">
             </div>
+
             <div class="w-full md:w-3/4 px-5 md:px-20 mt-5">
                 <h1 class="text-4xl font-light font-lato">{{$venue->name}}</h1>
                 <div class="text-gray-300 text-justify  font-medium">
@@ -21,6 +24,7 @@
                 </div>
             </div>
         </div>
+
         <div class="flex w-11/12 mx-auto my-2">
             @foreach ($venue->tags as $tag)
             <div class="tag inline-flex">{!! $tag->icon !!} {{$tag->title}}</div>
@@ -43,14 +47,9 @@
                         <div class="text-2xl md:text-xl 2xl:text-2xl font-semibold uppercase text-center">{{$event->name}}</div>
                         <div class="text-xl font-semibold uppercase text-center">{{ \Carbon\Carbon::parse($event->start_datetime)->translatedFormat('d \d\e F') }}</div>
                         <div class="text- font-semibold uppercase text-center">{{$event->venue->name}}</div>
-                        <a href="http://google.es" class="follow-button">
-                            <span class="mx-auto flex align-middle">
-                                <span class="material-symbols-outlined">
-                                    add_circle
-                                    </span> &nbsp;
-                                Seguir evento
-                            </span>
-                        </a>
+                        <!--dynamic button here -->                        
+                        <livewire:dynamic-follow-button containerId="follow-button-{{$event->slug}}" targetType="event" :targetId="$event->id" :targetSlug="$event->slug">
+
                         <a href="{{url('event/'.$event->slug)}}" class="mx-auto buy-button">
                             <span class="mx-auto flex align-middle">
                                 <span class="material-symbols-outlined">

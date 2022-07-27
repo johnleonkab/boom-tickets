@@ -37,4 +37,7 @@ class Venue extends Model
     {
         return $this->belongsTo(Organization::class);
     }
+    public function followers(){
+        return $this->hasMany(Following::class, 'target_id')->where('target_type', 'venue');
+    }
 }

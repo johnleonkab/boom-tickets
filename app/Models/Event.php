@@ -43,4 +43,8 @@ class Event extends Model
     {
         return $this->belongsTo(Venue::class);
     }
+
+    public function followers(){
+        return $this->hasMany(Following::class, 'target_id')->where('target_type', 'event');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\StripeTest;
 use App\Http\Controllers\User\EventsController;
 use App\Http\Controllers\User\VenueController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\MasterAdminController;
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::post('follow', [FollowerController::class, 'Follow']);
+Route::post('unfollow', [FollowerController::class, 'UnFollow']);
 
 
 Route::get('auth/google', [LoginController::class, 'redirect']);

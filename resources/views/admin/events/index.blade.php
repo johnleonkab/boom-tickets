@@ -21,7 +21,7 @@
             </td>
         </tr>
         @foreach ($events as $event)
-            <tr class="border-b border-gray-700 transition {{$event->color}} hover:bg-gray-800 ">
+            <tr class="border-b border-gray-700  hover:bg-gray-800 ">
                 <td class="py-4">{{ $event->name }}</td>
                 <td>{{ \Carbon\Carbon::parse($event->start_datetime)->format('d/m/Y H:i') }}</td>
                 <td>{{ \Carbon\Carbon::parse($event->end_datetime)->format('d/m/Y H:i') }}</td>

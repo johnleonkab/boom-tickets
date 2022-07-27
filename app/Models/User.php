@@ -60,4 +60,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function follows(){
+        return $this->hasMany(Following::class, 'follower_id');
+    }
 }
