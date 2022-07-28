@@ -4,8 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Venue;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class VenueController extends Controller
 {
@@ -50,6 +53,18 @@ class VenueController extends Controller
             'message' => 'La discoteca que estás buscando no está disponible o no existe. Para que no pare la fiesta vuelve atrás y sigue buscando']);
         }
         return view('venues.venue', ['pageTitle' => $venue->name, 'venue'=> $venue]);
+    }
+
+    public static function FollowBased(){
+        $venues = DB::table('users')
+        ->join('followings', 'followings.follower_id', '=', 'users.id')
+        ->join('venues', 'followings.target_id', '=', 'venues.id')
+        ->where('users.id', Auth::guard('web')->user()->id)
+        ->where('followings.target_type', 'venue')
+        ->where('venues.visible', true)
+        ->orderBy('rating', 'DESC')
+        ->get();
+        return view('components.club-cards-container', ['venues' => $venues, 'title' => 'Lugares que sigues']);
     }
 }
 

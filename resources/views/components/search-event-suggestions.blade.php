@@ -2,7 +2,7 @@
                         \Carbon\Carbon::setLocale('es');
                     @endphp
 @foreach ($events as $event)
-<button onclick="window.location.href='{{url('event/'.$event->slug)}}'" class="suggested-result hover:bg-indigo-500 hover:bg-opacity-50 transition w-full px-3 py-2 font-medium text-justify my-1 grid grid-cols-6 gap-2">
+<button onclick="window.location.href='{{url('event/'.$event->slug)}}'" class="h-24 suggested-result hover:bg-indigo-700 hover:bg-opacity-70 transition w-full px-3 py-2 font-medium text-justify my-1 grid grid-cols-6 gap-2">
     <div>
       <img class="max-h-24" src="@if($event->poster_url != '') {{$event->poster_url}} @else {{$event->venue->log_url}} @endif" alt="">
     </div>

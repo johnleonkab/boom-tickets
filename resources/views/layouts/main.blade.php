@@ -39,9 +39,20 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
         <livewire:success-alert :success="Session::get('success')">
         {{Session::forget('success')}}
     @endif 
+    <div id="dynamically-loaded-toast">
+
+    </div>
 <div class="">
     @yield('content')
 </div>
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+    <script>
+        function ShowToast(message){
+        $('#dynamically-loaded-toast').load('{{url('ShowDynamicToast')}}', {
+                _token: '{{csrf_token()}}',
+                message: message
+            })
+    }
+    </script>
 </body>
 </html>

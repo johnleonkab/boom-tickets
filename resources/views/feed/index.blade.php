@@ -24,14 +24,7 @@
 </style>
 <script>
     numberOfNotifications = 0;
-    $(document).ready(function(){
-        $.post('{{url('notifications/show')}}', {
-        _token: '{{csrf_token()}}',
-        limit: numberOfNotifications
-    }, function(html){
-          $("#notifications-container").append(html); //<---append the html here.
-      }, "html");
-    })
+ 
 $(window).scroll(function() {
     
    if($(window).scrollTop() + $(window).height() == $(document).height()) {
@@ -54,7 +47,6 @@ $(window).scroll(function() {
     <div class="w-full md:w-5/6 lg:w-2/3 bg-gray-800 mx-auto rounded-xl p-3">
     <h1 class="text-3xl font-roboto font-medium m-2">Mi feed</h1>
     <input type="text" id="feed-search" placeholder="Búsqueda" class="bg-gray-800 rounded-xl w-full focus:ring-0 my-2 transition focus:bg-gray-900 font-roboto focus:border-indigo-500">    
-    
     <div id="notifications-container" role="list">
         <div role="status" id="search-spinner" class="mx-auto text-center hidden">
             <svg class="inline mr-2 w-14 h-14 animate-spin text-gray-600 fill-lime-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

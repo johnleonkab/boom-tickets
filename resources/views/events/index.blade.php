@@ -1,34 +1,10 @@
 @extends('layouts.main')
 @section('content')
-<script>
-    
-    var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-
-function success(pos) {
-  var crd = pos.coords;
-
-  console.log('Your current position is:');
-  console.log('Latitude : ' + crd.latitude);
-  console.log('Longitude: ' + crd.longitude);
-  console.log('More or less ' + crd.accuracy + ' meters.');
-};
-
-function error(err) {
-  console.warn('ERROR(' + err.code + '): ' + err.message);
-};
-
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-</script>
 
 <div class="h-32"></div>
 <section id="event-header" class="text-white w-11/12 lg:w-5/6 mx-auto mb-20">
   <input type="text" id="search-box" placeholder="Busca un evento" class="focusable peer text-xl w-full lg:w-1/2 bg-transparent border-transparent border-b-2 focus:outline-none focus:ring-0 focus:border-transparent transition border-b-gray-600 focus:border-b-indigo-500">
-  <div id="suggested-results-box" class="focusable  transition hidden  absolute bg-gray-900 w-11/12 lg:w-5/12 z-40 rounded ">
+  <div id="suggested-results-box" class="focusable bg-black bg-opacity-60 transition hidden  absolute w-11/12 lg:w-5/12 z-40 rounded " style="backdrop-filter: blur(15px);">
     
   </div>
 </section>
@@ -72,12 +48,14 @@ navigator.geolocation.getCurrentPosition(success, error, options);
   <h2 class="text-3xl mt-10 font-poppins font-light  mx-auto my-5">Próximos eventos esta semana</h2>
   {{ App\Http\Controllers\User\EventsController::SoonEvents() }}
 </section>
+
+@if (!Auth::guard('web')->guest())
+
 <section class="text-white w-11/12 md:w-5/6 mx-auto">
-  <h2 class="text-3xl mt-10 font-poppins font-light  mx-auto my-5">Las que <span class="font-marker">Lo van a petar</span></h2>
-  {{ App\Http\Controllers\User\EventsController::SoonEvents() }}
+  <h2 class="text-3xl mt-10 font-poppins font-light  mx-auto my-5">Eventos que sigues</h2>
+  {{ App\Http\Controllers\User\EventsController::FollowingEvents() }}
 </section>
-
-
+@endif
 
 
 

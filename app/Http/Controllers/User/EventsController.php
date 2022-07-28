@@ -4,9 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Following;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EventsController extends Controller
 {
@@ -55,6 +58,16 @@ class EventsController extends Controller
     public static function SoonEvents(){
         $timezone = "Europe/Madrid";
         $events = Event::where('visible', true)->where('start_datetime', '>=', Carbon::now()->tz($timezone)->format('Y-m-d H:i:s'))->limit(25)->get();
+        return view('components.events-slider', ['events' => $events]);
+    }
+
+    public static function FollowingEvents(){
+        $timezone = "Europe/Madrid";
+        $followedEvents = Following::select('target_id')->where('target_type', 'event')
+        ->where('follower_id', Auth::guard('web')->user()->id)->get();
+
+        $events = Event::whereIn('id', $followedEvents)->get();
+        
         return view('components.events-slider', ['events' => $events]);
     }
 

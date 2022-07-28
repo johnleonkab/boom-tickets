@@ -85,8 +85,10 @@ Route::middleware([
 Route::post('follow', [FollowerController::class, 'Follow']);
 Route::post('unfollow', [FollowerController::class, 'UnFollow']);
 Route::post('notifications/show', [NotificationsController::class, 'ShowNotifications']);
+Route::post('notifications/share', [NotificationsController::class, 'Share']);
 Route::post('feed/search', [NotificationsController::class, 'SearchNotifications']);
 
+Route::post('ShowDynamicToast', [NotificationsController::class, 'ShowToast']);
 
 Route::get('auth/google', [LoginController::class, 'redirect']);
 

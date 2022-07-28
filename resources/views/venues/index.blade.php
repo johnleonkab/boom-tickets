@@ -51,6 +51,14 @@
     <h1 class="text-3xl mt-10 font-poppins font-light  mx-auto my-5">Discotecas que lo están <span class="font-bebas tracking  highlight-lime p-3">petando</span> cerca de tí</h1>
     <livewire:spinner>
 </section>
+
+@if (!Auth::guard('web')->guest())
+<section id="following-based" class="text-white my-20 w-11/12 lg:w-5/6 mx-auto">
+  {{ App\Http\Controllers\User\VenueController::FollowBased() }}
+</section>
+@endif
+
+
 <script>
     
     var options = {
