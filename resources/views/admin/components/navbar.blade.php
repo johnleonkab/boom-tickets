@@ -1,4 +1,4 @@
-<nav class="fixed border-gray-200 px-2 sm:px-4 py-4 bg-black top-0 w-full left-0 z-50" style="z-index: 99999">
+<nav class="fixed border-gray-200 border-b border-b-gray-400 px-2 sm:px-4 py-4 bg-black top-0 w-full left-0 z-50" style="z-index: 99999">
     <div class="container flex flex-wrap justify-between items-center mx-auto ">
       <a href="{{url('admin/')}}" class="flex items-center">
           <img src="{{asset('images/logo BT sq.png')}}" class="mr-3 h-6 sm:h-9" alt=" Logo" />

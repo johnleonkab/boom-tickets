@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('stripe_product_id', 255);
             $table->string('slug', 40);
             $table->string('name', 100);
-            $table->string('description', 1000);
+            $table->string('description', 6000);
             $table->text('tags')->nullable();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');

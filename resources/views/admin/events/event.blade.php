@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.main')
 @slot('pageTitle', $pageTitle)
 @section('content')
 <script src="https://unpkg.com/flowbite@1.4.7/dist/datepicker.js"></script>
@@ -279,7 +279,6 @@
                 @foreach ($event->tickets as $ticket)
                 <form action="{{url('admin/ticket/update')}}" id="ticketform-{{$ticket->slug}}">
                     <input type="hidden" name="event_slug" value="{{$event->slug}}">
-                    <input type="hidden" name="slug" value="{{$ticket->slug}}">
                     <tr class="border-b border-gray-700">
                         <td class="py-4">
                             <input name="name" @if($event->visible) readonly @endif placeholder="Nombre de la entrada (100 caracteres máximo)" required 

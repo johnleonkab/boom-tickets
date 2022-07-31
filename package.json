@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "@material-tailwind/html": "^1.1.6",
-        "daisyui": "^2.20.0"
+        "daisyui": "^2.20.0",
+        "flowbite": "^1.5.1",
+        "preline": "^1.1.2"
     }
 }

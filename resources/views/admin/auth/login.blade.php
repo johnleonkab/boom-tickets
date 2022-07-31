@@ -1,31 +1,100 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Laravel 8 Admin Auth - laravelcode.com</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+<html x-data="data()" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoomTickets - Admin: Acceso</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    @vite('resources/css/app.css')
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script src="{{asset('js/init-alpine.js')}}"></script>
+  </head>
+  <body>
+    <div class="flex items-center min-h-screen p-6 bg-gray-900">
+      <div
+        class="flex-1 h-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-xl bg-gray-800"
+      >
+        <div class="flex flex-col overflow-y-auto md:flex-row">
+          <div class="h-32 md:h-auto md:w-1/2">
+            <img
+              aria-hidden="true"
+              class="object-cover w-full h-full hidden"
+              src="../assets/img/login-office.jpeg"
+              alt="Office"
+            />
+            <img
+              aria-hidden="true"
+              class="object-cover w-full h-full block"
+              src="../assets/img/login-office-dark.jpeg"
+              alt="Office"
+            />
+          </div>
+          <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+            <div class="w-full">
+              <h1
+                class="mb-4 text-xl font-semibold  text-gray-200"
+              >
+                Acceso
+              </h1>
+              <form action="{{ route('adminLoginPost') }}" method="POST">
+                @csrf
+              <label class="block text-sm">
+                <span class=" text-gray-400">Usuario</span>
+                <input
+                  class="block w-full mt-1 rounded text-sm border-gray-600 bg-gray-700 focus:border-indigo-400 focus:outline-none focus:shadow-outline-indigo text-gray-300 focus:shadow-outline-gray form-input"
+                  placeholder="Jane Doe"
+                  name="username"
+                />
+              </label>
+              <label class="block mt-4 text-sm">
+                <span class=" text-gray-400">Contraseña</span>
+                <input
+                  class="block w-full mt-1 text-sm rounded border-gray-600 bg-gray-700 focus:border-indigo-400 focus:outline-none focus:shadow-outline-indigo text-gray-300 focus:shadow-outline-gray form-input"
+                  placeholder="***************"
+                  type="password"
+                  name="password"
+                />
+              </label>
 
-@vite('resources/css/app.css')
-</head>
+              <!-- You should use a button here, as the anchor is only used for the example  -->
+              <button
+                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-indigo-600 border border-transparent rounded-lg active:bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:shadow-outline-indigo"
+                type="submit"
+              >
+                Log in
+            </button>
+              </form>
+              <hr class="my-8" />
+              
 
-
-<body class="" style="background-color:#262626">
-
-@component('admin.components.navbar')  
-@endcomponent
-
-
-    <div class="bg-black w-full md:w-1/2 xl:w-1/4 mx-auto border mt-40 p-2 py-8 text-white shadow-2xl">
-        <div>
-            <img src="{{asset('images/logo BT sq.png')}}" class="w-1/4 mx-auto" alt="">
+              <p class="mt-4">
+                <a
+                  class="text-sm font-medium text-indigo-400 hover:underline"
+                  href="./forgot-password.html"
+                >
+                  Forgot your password?
+                </a>
+              </p>
+              <p class="mt-1">
+                <a
+                  class="text-sm font-medium text-indigo-400 hover:underline"
+                  href="./create-account.html"
+                >
+                  Create account
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="font-light text-center text-2xl font-lato">Iniciar sesión</div>
-        @if(\Session::get('success'))
+      </div>
+    </div>
+
+
+    @if(\Session::get('success'))
         <div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" role="alert">
             <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
                 {{ \Session::get('success') }}
@@ -51,33 +120,6 @@
           </div>
 
         @endif 
-            <form action="{{ route('adminLoginPost') }}" method="post" autocomplete="off" class="text-center">
-                @csrf
-            <div >
-                <input type="text" name="username" placeholder="usuario" required="required" autocomplete="off" 
-                class="bg-transparent border-t-0 border-r-0 border-l-0 focus:outline-none border-b text-gray-200 focus:border-indigo-500 transition">
-                @if ($errors->has('email'))
-                <span class="help-block font-red-mint">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @endif
-            </div>
-
-            <div class="mt-2">
-                <input type="password"  name="password" placeholder="contraseña" required="required"
-            class="bg-transparent border-t-0 border-r-0 border-l-0 focus:outline-none border-b text-gray-200 focus:border-indigo-500 transition">
-            @if ($errors->has('password'))
-            <span class="help-block font-red-mint">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
-            @endif
-            </div>
-            <button class="bg-indigo-600 py-2 px-3 font-lato font-semibold mb-3 mt-4 focus:bg-indigo-700 transition focus:outline-none">
-                Iniciar sesión
-            </button>
-            </form>
-    </div>
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
-
-</body>
+  </body>
 </html>
+

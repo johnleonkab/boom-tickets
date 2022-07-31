@@ -203,6 +203,9 @@ class TicketsController extends Controller
             return $this->ReturnValidationError('No hemos podido verificar que pertenezcas a la organización de la entrada que quieres
             eliminar.');
         }
+        if($ticket->event->visible){
+            return $this->ReturnValidationError('No puedes eliminar una entrada de un evento publicado');
+        }
         //Delete ticket from database and stripe:
         $stripe = new \Stripe\StripeClient(
             'sk_test_51KBkfqEG9rwSgs2lOK451W7QCG6rLgaHh4hyViBz0CFdrTpAOMQ7cU8ZcHTf9BRrD1O6TU3OeUm2HecygXihL0s300iPUhLb3M'

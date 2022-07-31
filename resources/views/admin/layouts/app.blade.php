@@ -20,7 +20,7 @@
 @vite('resources/css/app.css')
 </head>
 
-<body class="" style="background-color:#262626">
+<body class="bg-black">
 
     @component('admin.components.navbar')  
     @endcomponent

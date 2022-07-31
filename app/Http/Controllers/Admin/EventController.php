@@ -41,13 +41,10 @@ class EventController extends Controller
 
 
     public function NewEvent(Request $request){
-        /* #1 Validar todos los campos: nombre, descripcion, 
-            color, poster, fechas, aforo, lugar (pertenencia), edad minima*/
-        // Un evento no se podrá hacer visible en el momento de su creación.
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|max:100',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:6000',
             'start_date_time' => 'required|date_format:Y-m-d\TH:i',
             'end_date_time' => 'required|date_format:Y-m-d\TH:i|after_or_equal:start_date_time',
             'max_capacity' => 'required|numeric|min:0|integer',
@@ -111,10 +108,10 @@ class EventController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'tags' => $tagsString,
-            'start_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->start_date_time, $timezone),
-            'end_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->end_date_time, $timezone),
+            'start_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->start_date_time, $timezone)->setTimezone('UTC'),
+            'end_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->end_date_time, $timezone)->setTimezone('UTC'),
             'max_capacity' => $request->max_capacity,
-            'visible' => $request->visible,
+            'visible' => false,
             'recurrente' => 0,
             'patron_recurrencia' => $request->patron_recurrencia,
             'venue_id' => $this->FindVenue($request->venue_slug)->id,
@@ -160,7 +157,6 @@ class EventController extends Controller
                 'start_date_time' => 'required|date_format:Y-m-d\TH:i',
                 'end_date_time' => 'required|date_format:Y-m-d\TH:i|after_or_equal:start_date_time',
                 'max_capacity' => 'required|numeric|min:0|max:9999',
-                'visible' => 'required|boolean',
                 'recurrente' => 'boolean',
                 'patron_recurrencia' => 'max:255',
                 'venue_slug' => 'required|exists:venues,slug',
@@ -193,9 +189,9 @@ class EventController extends Controller
 
         
         #2 Find if Event is visible or not.
-        $event = Event::where('slug', $request->slug)->where('organization_id', Admin::find(Auth('admin')->user()->id)->organization_id)->get()->first();
-        $visibleTicketNumber = Event::find($event->id)->tickets->where('visible', true)->count();
-
+        $event = Event::where('slug', $request->slug)
+        ->where('organization_id', Admin::find(Auth('admin')->user()->id)->organization_id)
+        ->get()->first();
 
         $poster_url = $event->poster_url;
         if($request->hasFile('poster_img')){
@@ -220,10 +216,10 @@ class EventController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'tags' => $tagsString,
-                'start_datetime' => $request->start_date_time,
-                'end_datetime' => $request->end_date_time,
+                'start_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->start_date_time, $venue->timezone)->setTimezone('UTC'),
+                'end_datetime' => Carbon::createFromFormat('Y-m-d\TH:i', $request->end_date_time, $venue->timezone)->setTimezone('UTC'),
                 'max_capacity' => $request->max_capacity,
-                'visible' => $request->visible,
+                'visible' => $event->visible,
                 'recurrente' => false,
                 'patron_recurrencia' => $request->patron_recurrencia,
                 'venue_id' => $venue->id,
@@ -287,7 +283,7 @@ class EventController extends Controller
 
         $event = Event::where('slug', $eventSlug)->where('organization_id', Admin::find(Auth('admin')->user()->id)->organization_id)->get()->first();
         $tickets = $event->tickets;
-        return view('admin.events.event', ['pageTitle' => 'Evento: '. $event->name, 'event' => $event, 'tickets' => $tickets, 'postUrl' => url('admin/event/update')]);
+        return view('admin.events.eventc', ['pageTitle' => 'Evento: '. $event->name, 'event' => $event, 'tickets' => $tickets, 'postUrl' => url('admin/event/update')]);
     }
 
     public function showNewEventTemplate(){
@@ -306,6 +302,13 @@ class EventController extends Controller
                 'id' => '',
                 'minimum_age' => '',
                 'tags' => '',
+                'venue' => [
+                    'name' => '',
+                    'currency' => '',
+                    'timezone' => [
+                        'madrid'
+                    ],
+                ],
                 'tickets' => [
                     [
                         'name' => '',
@@ -322,6 +325,6 @@ class EventController extends Controller
             ]
         ]);
     
-        return view('admin.events.event', ['pageTitle' => 'Nuevo Evento', 'event' => $event->first, 'tickets' => $tickets, 'postUrl' => url('admin/event/new')]);
+        return view('admin.events.eventc', ['pageTitle' => 'Nuevo Evento', 'event' => $event->first, 'tickets' => $tickets, 'postUrl' => url('admin/event/new')]);
     }
 }

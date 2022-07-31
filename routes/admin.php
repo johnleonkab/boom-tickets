@@ -24,6 +24,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('test/event', function(){
+    return view('admin.events.event-component');
+});
+
+
 Route::get('login', [AdminAuthController::class, 'getLogin'])->name('adminLogin');
 Route::post('login', [AdminAuthController::class, 'postLogin'])->name('adminLoginPost');
 Route::get('logout', [AdminAuthController::class, 'logout'])->name('adminLogout');
@@ -50,7 +55,7 @@ Route::prefix('stripe')->group(function () {
             Route::get('new', [EventController::class, 'showNewEventTemplate']);
             Route::post('new', [EventController::class, 'NewEvent']);
             Route::post('update', [EventController::class, 'UpdateEvent']);
-            Route::get('delete', [EventController::class, 'deleteEvent']);
+            Route::post('delete', [EventController::class, 'deleteEvent']);
             Route::get('publish', [EventController::class, 'publishEvent']);
     
             Route::get('/{event_slug}', [EventController::class, 'loadSingleEvent'])->name('showEvent');
@@ -63,7 +68,7 @@ Route::prefix('stripe')->group(function () {
         Route::prefix('ticket')->group(function () {
             Route::get('new', [TicketsController::class, 'CreateUpdateTicket']);
             Route::get('update', [TicketsController::class, 'CreateUpdateTicket']);
-            Route::get('delete', [TicketsController::class, 'DeleteTicket']);
+            Route::post('delete', [TicketsController::class, 'DeleteTicket']);
     
         });
     });

@@ -1,9 +1,9 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.main')
 @slot('pageTitle', $pageTitle)
 @section('content')
 
-<div class="text-white w-full md:w-5/6 lg:w-3/4 mx-auto">
-    <div class="text-4xl font-lato font-light">Próximos eventos: {{$events->count()}}</div>
+<div class="text-white w-5/6 pt-5 mx-auto">
+    <div class="text-3xl font-lato font-light">Próximos eventos: {{$events->count()}}</div>
     <hr>
     <table class="w-full my-5">
         <tr class="font-medium text-lg">
@@ -21,7 +21,7 @@
             </td>
         </tr>
         @foreach ($events as $event)
-            <tr class="border-b border-gray-700  hover:bg-gray-800 ">
+            <tr class="border-b border-gray-700  hover:bg-gray-800  transition">
                 <td class="py-4">{{ $event->name }}</td>
                 <td>{{ \Carbon\Carbon::parse($event->start_datetime)->format('d/m/Y H:i') }}</td>
                 <td>{{ \Carbon\Carbon::parse($event->end_datetime)->format('d/m/Y H:i') }}</td>
