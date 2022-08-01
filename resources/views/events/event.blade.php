@@ -36,7 +36,7 @@ filter: blur(15px);
                     {{$event->description}}
                 </div>
                 <div class="my-10 flex">
-                    <a href="{{url('venue/'.$event->venue->slug)}}" class="rounded-lg p-3 align-middle font-medium transition {{$event->color}}">
+                    <a href="{{url('venue/'.$event->venue->slug)}}" class="rounded-lg p-3 align-middle font-medium transition cbg-{{$event->color}}">
                         <span class="material-symbols-outlined align-middle">
                             pin_drop
                             </span>
@@ -84,7 +84,7 @@ filter: blur(15px);
                 </div>
             @endif
             @foreach ($event->tickets->where('visible', true) as $ticket)
-            <div class="ticket border-{{$event->color}}-neon flex flex-col">
+            <div class="ticket border-{{$event->color}} flex flex-col">
                 <div class="px-3 py-3">
                     <span class="font-medium font-lato text-xl mb-10 uppercase">{{$ticket->name}}</span>
                 </div>

@@ -1,7 +1,6 @@
 @extends('admin.layouts.main')
 @slot('pageTitle', $pageTitle)
 @section('content')
-
 <div class="text-white w-5/6 pt-5 mx-auto">
     <div class="text-3xl font-lato font-light">Próximos eventos: {{$events->count()}}</div>
     <hr>

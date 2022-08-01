@@ -279,6 +279,7 @@
                 @foreach ($event->tickets as $ticket)
                 <form action="{{url('admin/ticket/update')}}" id="ticketform-{{$ticket->slug}}">
                     <input type="hidden" name="event_slug" value="{{$event->slug}}">
+                    <input type="hidden" name="slug" value="{{$ticket->slug}}">
                     <tr class="border-b border-gray-700">
                         <td class="py-4">
                             <input name="name" @if($event->visible) readonly @endif placeholder="Nombre de la entrada (100 caracteres máximo)" required 

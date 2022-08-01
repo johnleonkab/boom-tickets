@@ -160,7 +160,7 @@ class EventController extends Controller
                 'recurrente' => 'boolean',
                 'patron_recurrencia' => 'max:255',
                 'venue_slug' => 'required|exists:venues,slug',
-                'color' => 'required|max:6|in:red,green,blue,purple,pink',
+                'color' => 'required|max:6|in:red,blue,yellow,green,lime,violet,purple,orange,cian,aqua',
                 'minimum_age' => 'required|numeric|min:18',
             ]
             );

@@ -8,11 +8,78 @@
 
 /* Layout Elements */
 .title-header-2{ @apply text-2xl font-roboto}
-input[type=datetime-local], input[type=number], input[type=text], .form-textarea{
+input[type=datetime-local], input[type=number], .form-textarea{
     @apply mb-5 block w-full mt-1 text-sm rounded !border-gray-600 !bg-gray-700  text-gray-300 form-input transition
 }
 input[type=datetime-local]:hover, input[type=number]:hover, input[type=text]:hover .form-textarea:hover{
     @apply border-indigo-400 outline-none 
+}
+
+.cbg-red{
+    background-color: #ff2414
+}
+.border-red{
+    border-color: #ff2414
+}   
+.cbg-blue{
+    background-color: #0066ff
+}
+.border-blue{
+    border-color: #0066ff
+}
+.cbg-green{
+    background-color: #00d664
+}
+.border-green{
+    border-color: #00d664
+}
+.cbg-pink{
+    background-color: #ff0095
+}
+.border-pink{
+    border-color: #ff0095
+}
+.cbg-yellow{
+    background-color: #fcba03
+}
+.border-yellow{
+    border-color: #fcba03
+}
+.cbg-lime{
+    background-color: #aeff00
+}
+.border-lime{
+    border-color: #aeff00;
+}
+.cbg-violet{
+    background-color: #f700ff
+}
+.border-violet{
+    border-color: #f700ff
+}
+.cbg-purple{
+    background-color: #6600ff
+}
+.border-purple{
+    border-color: #6600ff
+}
+.cbg-orange{
+    background-color: #ff5e00
+}
+.border-orange{
+    border-color: #ff5e00
+}
+.cbg-cian{
+    background-color: #00ffae
+}
+.border-cian{
+    border-color: #00ffae
+}
+.cbg-aqua{
+    background-color: #3bff8c
+}
+.border-aqua{
+    border-color: #3bff8c
 }
 
 
@@ -59,7 +126,7 @@ input[type=datetime-local]:hover, input[type=number]:hover, input[type=text]:hov
 
 
 .ticket{
-    @apply bg-black border-2 font-medium rounded m-5 hover:scale-105 transition p-3
+    @apply bg-black border-2 font-medium rounded m-5 hover:scale-105 transition p-3 bg-opacity-80
 }
 
 .input{

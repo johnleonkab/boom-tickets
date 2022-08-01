@@ -56,7 +56,7 @@ Route::prefix('stripe')->group(function () {
             Route::post('new', [EventController::class, 'NewEvent']);
             Route::post('update', [EventController::class, 'UpdateEvent']);
             Route::post('delete', [EventController::class, 'deleteEvent']);
-            Route::get('publish', [EventController::class, 'publishEvent']);
+            Route::post('publish', [EventController::class, 'publishEvent']);
     
             Route::get('/{event_slug}', [EventController::class, 'loadSingleEvent'])->name('showEvent');
         });
